@@ -19,7 +19,7 @@ class Dados:
 
 
 class Jugador:
-    def __init__(self, nombre):
+    def __init__(self, nombre: str):
         self.game_1 = 0
         self.game_2 = 0
         self.game_3 = 0
@@ -33,7 +33,7 @@ class Jugador:
         self.generala_doble = 0
         self.total = 0
 
-        self.nombre =nombre
+        self.nombre = nombre
 
     def calcular_resultados_finales(self):
         self.total = self.game_1 + self.game_2 + self.game_3 + self.game_4 + self.game_5 + self.game_6 + self.escalera + self.full + self.poker + self.generala + self.generala_doble
@@ -71,7 +71,11 @@ class Generala:
                 lista_a_mantener = eval('[' + lista_de_mantencion +']')
                 
                 for index in lista_a_mantener:
-                    exec(f"self.dado_0{index}.mantener_dado()")
+                    try:
+                        exec(f"self.dado_0{index}.mantener_dado()")
+                    
+                    except IndexError:
+                        continue
 
                 lista_que_no_mantiene = [n for n in range(1, 6) if n not in lista_a_mantener]
                 
@@ -83,8 +87,9 @@ class Generala:
             except NameError:
                 print(f"Algunos de los índices no está numerado correctamente: '{lista_de_mantencion}'")
                 continue
+            
     
-    def jugadas(self):
+    def jugadas(self, generala_previa:bool=False):
         self.j_game_1 = 0
         self.j_game_2 = 0
         self.j_game_3 = 0
@@ -95,6 +100,7 @@ class Generala:
         self.j_full = 0
         self.j_poker = 0
         self.j_generala = 0
+        
         self.j_generala_doble = 0
         
         lista_de_jugada = (self.dado_01.valor,
@@ -152,18 +158,18 @@ class Generala:
                 continue
 
         for n in range(1, 7):
-            if lista_de_jugada.count(n) == 5 and self.j_generala == 50:
+            # if lista_de_jugada.count(n) == 5:
+            #     print("Generala!!!!!!!")
+        
+            if lista_de_jugada.count(n) == 5 and self.cantidad_lanzamientos >= 1:
+                self.j_generala = 50
+            
+            if lista_de_jugada.count(n) == 5 and generala_previa is True:
                 self.j_generala_doble = 100
 
-            elif lista_de_jugada.count(n) == 5 and self.cantidad_lanzamientos != 1:
-                self.j_generala = 50
-
-            elif lista_de_jugada.count(n) == 5 and self.cantidad_lanzamientos == 1:
+            if lista_de_jugada.count(n) == 5 and self.cantidad_lanzamientos == 1:
                 print("¡Generala servida! Ha ganado el juego!")
 
-            elif lista_de_jugada.count(n) == 5:
-                print("Generala!!!!!!!")
-    
 
     # Esta función imprime los resultados de las jugadas
     def mostrar_jugadas(self):
