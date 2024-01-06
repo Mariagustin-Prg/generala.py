@@ -1,43 +1,37 @@
 from dados import Jugador, Generala
-import time
+import time, os
 
-jugador_1 = Jugador(nombre = input("Jugador N°1: "))
 
-juego = Generala()
-
+n_jugadores = 0
 while True:
-    print(f"Haciendo {juego.cantidad_lanzamientos}°")
+    os.system('cls')
+    n_jugadores += 1
+    exec(f"jugador_{n_jugadores} = Jugador(nombre = input(f'Ingrese el nombre del jugador n°{n_jugadores}:'))")
 
-    juego.tirada()
+    time.sleep(3)
 
-    time.sleep(5)
+    exec(f'print(f"¿El nombre del jugador n°1 es: {globals()["jugador_" + str(n_jugadores)].nombre}?")')
 
-    juego.mostrar_tirada()
+    respuesta_jugadores = input("Sí(Y) o No(N): ")
 
-    time.sleep(5)
+    bool_de_respuesta = [True if respuesta_jugadores == 'Y' else False]
 
-    juego.jugadas()
-
-    juego.mostrar_jugadas()
-    while True:
-        respuesta = input("¿Quiere anotar su puntaje? Y para Sí | N para No\n Respuesta: ")
-
-        if respuesta == 'N':
-            break
-        elif respuesta == 'Y':
-            break
-        else:
-            continue
-    
-    if respuesta == 'Y':
+    if bool_de_respuesta is False:
+        n_jugadores -= 1
         break
-    
-    juego.dado_01.valor = 6
-    juego.dado_02.valor = 6
-    juego.dado_03.valor = 6
-    juego.dado_04.valor = 6
-    juego.dado_05.valor = 6
+    else:
+        pass
 
-    juego.elegir_mantener_dados()
+    mas_jugadores = input("¿Hay más jugadores para agregar? Sí(Y) o No(N). Respuesta:")
 
-juego.mostrar_conteo()
+    bool_mas_jugadores = [True if mas_jugadores == 'Y' else False]
+
+    if bool_mas_jugadores is True:
+        continue
+    else:
+        break
+
+os.system('cls')
+print("Lista de Jugadores:\n")
+for x in range(1, n_jugadores + 1):
+    exec(f'print(f"Jugador N°1: {globals()["jugador_" + str(x)].nombre}")')
