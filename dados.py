@@ -24,9 +24,14 @@ class Dado:
             self.valor = random.randint(1, 6)
     
     # Declaramos la función para bloquear el dado.
-    def mantener_dado(self) -> any:
-        self.bloqueo = True
+    def cambiar_bloqueo(self) -> any:
+        '''
+        Al llamar a esta función, el dado cambia de su estado de estar bloqueado
+        a estar desbloqueado y viceversa.
+        '''
+        if self.bloqueo is True: 
+            self.bloqueo = False
+        
+        else:
+            self.bloqueo = True
 
-    # Declaramos la función para desbloquear el dado.
-    def no_mantener_dado(self) -> any:
-        self.bloqueo = False
