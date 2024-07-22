@@ -37,139 +37,80 @@ class Generala:
 
     # Con esta función obtenemos el valor de la jugada para 1.
     def game_1(self) -> int:
-        valores = self.mostrar_tirada()
+        valores = self.mostrar_tirada().values()
+        return sum(1 for x in valores if x == 1)
 
-        suma = 0
-
-        for x in valores.values():
-            if x == 1:
-                suma += 1
-
-        return suma
-    
-    # Con esta función obtenemos el valor de la jugada para los dados iguales a 2.
     def game_2(self) -> int:
-        valores = self.mostrar_tirada()
+        valores = self.mostrar_tirada().values()
+        return sum(2 for x in valores if x == 2)
 
-        suma = 0
-
-        for x in valores.values():
-            if x == 2:
-                suma += 2
-
-        return suma
-    
-
-    # Con esta función obtenemos el valor para la jugada con los dados iguales a 3.
     def game_3(self) -> int:
-        valores = self.mostrar_tirada()
+        valores = self.mostrar_tirada().values()
+        return sum(3 for x in valores if x == 3)
 
-        suma = 0
-
-        for x in valores.values():
-            if x == 3:
-                suma += 3
-
-        return suma
-    
-
-    # Dados iguales a 4
     def game_4(self) -> int:
-        valores = self.mostrar_tirada()
+        valores = self.mostrar_tirada().values()
+        return sum(4 for x in valores if x == 4)
 
-        suma = 0
-
-        for x in valores.values():
-            if x == 4:
-                suma += 4
-
-        return suma
-    
-
-    # Suma de los dados iguales a 5.
     def game_5(self) -> int:
-        valores = self.mostrar_tirada()
+        valores = self.mostrar_tirada().values()
+        return sum(5 for x in valores if x == 5)
 
-        suma = 0
-
-        for x in valores.values():
-            if x == 5:
-                suma += 5
-
-        return suma
-    
-
-    # Suma de los dados iguales a 6.
     def game_6(self) -> int:
-        valores = self.mostrar_tirada()
+        valores = self.mostrar_tirada().values()
+        return sum(6 for x in valores if x == 6)
 
-        suma = 0
-
-        for x in valores.values():
-            if x == 6:
-                suma += 6
-
-        return suma
-    
-
-    # Verifica si hay escalera
     def game_escalera(self) -> int:
-        # Los dados en un diccionario.
-        valores = self.mostrar_tirada()
+        valores = list(self.mostrar_tirada().values())
+        if len(set(valores)) == 5 and (max(valores) - min(valores) == 4):
+            return 25 if self.cantidad_lanzamientos == 1 else 20
+        return 0
 
-        valores_unicos =[]
-        valores_unicos = [v for v in valores.values() if v not in valores_unicos]
-
-        if len(valores_unicos) == 5:
-            if self.cantidad_lanzamientos == 1:
-                return 25
-            else:
-                return 20
-        else:
-            return 0
-        
-    # Verifica si los dados hacen full house
     def game_full(self) -> int:
-        valores = self.mostrar_tirada().values()
-        full_house = False
+        valores = list(self.mostrar_tirada().values())
+        counts = [valores.count(i) for i in range(1, 7)]
+        if 3 in counts and 2 in counts:
+            return 35 if self.cantidad_lanzamientos == 1 else 30
+        return 0
 
-        lista_full = [valores.count(c) for c in range(1,7)]
-
-        if 3 in lista_full and 2 in lista_full:
-            full_house = True
-        else: 
-            return 0
-        
-        if full_house and self.cantidad_lanzamientos == 1:
-            return 35
-        elif full_house and self.cantidad_lanzamientos > 1:
-            return 30
-        else:
-            pass
-
-
-    # Verifica si los dados hacen poker.
     def game_poker(self) -> int:
-        valores = self.mostrar_tirada().values()
-        poker = False
-
-        cont_poker = [valores.count(x) for x in range(1,7)]
-
-        if 4 in cont_poker:
-            poker = True
+        valores = list(self.mostrar_tirada().values())
+        counts = [valores.count(i) for i in range(1, 7)]
+        if 4 in counts:
+            return 45 if self.cantidad_lanzamientos == 1 else 40
         else:
             return 0
-        
-        if poker and self.cantidad_lanzamientos == 1:
-            return 45
-        elif poker and self.cantidad_lanzamientos > 1:
-            return 40
-        
 
-    # Verifica si los dados hacen generala.
     def game_generala(self) -> int:
-        pass
+        valores = list(self.mostrar_tirada().values())
+        counts = [valores.count(i) for i in range(1, 7)]
+        if 5 in counts:
+            self.generala_1 = True
+            return 50
+        else:
+            self.generala_1 = False
+            return 0
 
-    # Verifica si hay generala doble.
     def game_generala_doble(self) -> int:
-        pass
+        if not self.generala_1:
+            return 0
+        valores = list(self.mostrar_tirada().values())
+        counts = [valores.count(i) for i in range(1, 7)]
+        if 5 in counts:
+            return 100
+        return 0
+
+    def calcular_games(self) -> dict:
+        return {
+            "1": self.game_1(),
+            "2": self.game_2(),
+            "3": self.game_3(),
+            "4": self.game_4(),
+            "5": self.game_5(),
+            "6": self.game_6(),
+            "Escalera": self.game_escalera(),
+            "Full House": self.game_full(),
+            "Poker": self.game_poker(),
+            "Generala": self.game_generala(),
+            "Generala Doble": self.game_generala_doble()
+        }
