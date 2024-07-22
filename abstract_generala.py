@@ -110,3 +110,66 @@ class Generala:
                 suma += 6
 
         return suma
+    
+
+    # Verifica si hay escalera
+    def game_escalera(self) -> int:
+        # Los dados en un diccionario.
+        valores = self.mostrar_tirada()
+
+        valores_unicos =[]
+        valores_unicos = [v for v in valores.values() if v not in valores_unicos]
+
+        if len(valores_unicos) == 5:
+            if self.cantidad_lanzamientos == 1:
+                return 25
+            else:
+                return 20
+        else:
+            return 0
+        
+    # Verifica si los dados hacen full house
+    def game_full(self) -> int:
+        valores = self.mostrar_tirada().values()
+        full_house = False
+
+        lista_full = [valores.count(c) for c in range(1,7)]
+
+        if 3 in lista_full and 2 in lista_full:
+            full_house = True
+        else: 
+            return 0
+        
+        if full_house and self.cantidad_lanzamientos == 1:
+            return 35
+        elif full_house and self.cantidad_lanzamientos > 1:
+            return 30
+        else:
+            pass
+
+
+    # Verifica si los dados hacen poker.
+    def game_poker(self) -> int:
+        valores = self.mostrar_tirada().values()
+        poker = False
+
+        cont_poker = [valores.count(x) for x in range(1,7)]
+
+        if 4 in cont_poker:
+            poker = True
+        else:
+            return 0
+        
+        if poker and self.cantidad_lanzamientos == 1:
+            return 45
+        elif poker and self.cantidad_lanzamientos > 1:
+            return 40
+        
+
+    # Verifica si los dados hacen generala.
+    def game_generala(self) -> int:
+        pass
+
+    # Verifica si hay generala doble.
+    def game_generala_doble(self) -> int:
+        pass
