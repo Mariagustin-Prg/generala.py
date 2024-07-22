@@ -1,6 +1,10 @@
+# Importamos la clase Dado
 from dados import Dado
 
+# Creamos la clase Jugador
 class Jugador:
+    
+    # Al crear la clase, se crearan las variables que contendran los valores de los juegos
     def __init__(self) -> any:
         self.game_1 = 0
         self.game_2 = 0
@@ -17,5 +21,7 @@ class Jugador:
 
         self.nombre = ""
 
+
+    #  Con esta función se configura el nombre
     def set_nombre(self, name: str) -> any:
         self.nombre = name

@@ -1,8 +1,10 @@
+# Importamos la clase Dado
 from dados import Dado
 
+#  Creamos la clase 'Generala'
 class Generala:
 
-    
+    # Al construir la clase se crearan 5 dados, con una variable de control que contendrá la cantidad de lanzamientos de los dados.
     def __init__(self) -> any:
         self.dado_01 = Dado()
         self.dado_02 = Dado()
@@ -12,7 +14,7 @@ class Generala:
         self.cantidad_lanzamientos = 0
 
 
-
+    #  Al llamar esta función, se sumará el lanzamiento y se generará una tirada aleatoria de los dados.
     def tirada(self) -> any:
         self.dado_01.nueva_tirada()
         self.dado_02.nueva_tirada()
@@ -22,7 +24,7 @@ class Generala:
         self.cantidad_lanzamientos += 1
 
 
-
+    # Con esta función podemos obtener los valores de los dados en forma de diccionario.
     def mostrar_tirada(self) -> dict:
         return {
             "1er Dado": self.dado_01.valor,
@@ -31,7 +33,9 @@ class Generala:
             "4to Dado": self.dado_04.valor,
             "5to Dado": self.dado_05.valor
         }
-            
+    
+
+    # Con esta función obtenemos el valor de la jugada para 1.
     def game_1(self) -> int:
         valores = self.mostrar_tirada()
 
@@ -43,6 +47,7 @@ class Generala:
 
         return suma
     
+    # Con esta función obtenemos el valor de la jugada para los dados iguales a 2.
     def game_2(self) -> int:
         valores = self.mostrar_tirada()
 
@@ -54,6 +59,8 @@ class Generala:
 
         return suma
     
+
+    # Con esta función obtenemos el valor para la jugada con los dados iguales a 3.
     def game_3(self) -> int:
         valores = self.mostrar_tirada()
 
@@ -65,6 +72,8 @@ class Generala:
 
         return suma
     
+
+    # Dados iguales a 4
     def game_4(self) -> int:
         valores = self.mostrar_tirada()
 
@@ -76,6 +85,8 @@ class Generala:
 
         return suma
     
+
+    # Suma de los dados iguales a 5.
     def game_5(self) -> int:
         valores = self.mostrar_tirada()
 
@@ -87,6 +98,8 @@ class Generala:
 
         return suma
     
+
+    # Suma de los dados iguales a 6.
     def game_6(self) -> int:
         valores = self.mostrar_tirada()
 
