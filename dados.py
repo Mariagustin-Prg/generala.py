@@ -3,6 +3,9 @@ import random
 
 # Iniciamos la clase Dados
 class Dado:
+    '''
+    El objeto tendrá seis valores posibibles y podrá mantener ese valor, o volver a ser lanzado
+    '''
     def __init__(self) -> any:
         # Al iniciar tendrá dos variables asignadas:
 
