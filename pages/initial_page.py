@@ -1,5 +1,5 @@
 # Importamos la siguiente página del juego y tkinter
-from player_page import p2
+from player_page import P2
 import tkinter as tk
 
 # Inicializamos una ventana
@@ -41,7 +41,7 @@ def on_click_button() -> None:
     # Cierra la ventana principal
     ventana.destroy()
     # Llama a la segunda ventana
-    _p2_ = p2()
+    _p2_ = P2()
 
 # Le añadimos la funcionalidad al botón.
 boton.configure(command= on_click_button)
