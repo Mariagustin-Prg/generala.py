@@ -39,3 +39,16 @@ class Jugador:
         Retorna el nombre del jugador.
         '''
         return self.nombre
+    
+    def get_puntajes(self) -> dict:
+        return {"1":self.game_1,
+                "2": self.game_2,
+                "3": self.game_3,
+                "4": self.game_4,
+                "5": self.game_5,
+                "6": self.game_6,
+                "Escalera": self.escalera,
+                "Full": self.full,
+                "Poker": self.poker,
+                "Generala": self.generala,
+                "Generala": self.generala_doble}
