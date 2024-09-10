@@ -1,10 +1,7 @@
 import tkinter as tk
-import pandas as pd
-# from ..player import Jugador
 
 class P3:
     def __init__(self) -> None:
-        self.df = pd.DataFrame()
         
         self.app = tk.Tk()
 
@@ -20,18 +17,9 @@ class P3:
         frame.pack()
 
 
-
-
         self.app.mainloop()
 
-    # def set_jugadores(self, lista_jugadores: list) -> None:
-    #     self.jugadores = lista_jugadores
 
-    #     for n_jugador in self.jugadores:
-            
-    #         jugador = Jugador()
-
-    #         jugador.set_nombre(n_jugador)
 
 
 

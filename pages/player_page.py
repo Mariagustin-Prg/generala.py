@@ -72,5 +72,13 @@ class P2:
 
         self.ventana.mainloop()
 
+
+
+
+    def get_list_jugadores(self) -> list:
+        return self.listaJugadores
+
+
+
 if __name__ == "__main__":
     app = P2()

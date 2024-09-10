@@ -9,7 +9,7 @@ class Jugador:
     Para introducir el nombre se debe llamar a la función 'set_nombre'.
     '''
     # Al crear la clase, se crearan las variables que contendran los valores de los juegos
-    def __init__(self) -> any:
+    def __init__(self) -> None:
         self.game_1 = 0
         self.game_2 = 0
         self.game_3 = 0
@@ -27,7 +27,7 @@ class Jugador:
 
 
     #  Con esta función se configura el nombre
-    def set_nombre(self, name: str) -> any:
+    def set_nombre(self, name: str) -> None:
         '''
         Se introduce el nombre del jugador.
         '''
