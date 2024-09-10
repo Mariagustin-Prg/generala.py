@@ -63,6 +63,13 @@ class P2:
         self.boton_siguiente = tk.Button(self.ventana, text= "Comenzar juego")
         self.boton_siguiente.pack(side='right')
 
+        def next_page_on_click():
+            self.ventana.destroy()
+
+            self.__p3__ = P3()
+        
+        self.boton_siguiente.config(command= next_page_on_click)
+
         self.ventana.mainloop()
 
 if __name__ == "__main__":
